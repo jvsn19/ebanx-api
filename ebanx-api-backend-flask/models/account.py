@@ -2,14 +2,17 @@ class Account:
     '''
     Class Account definition. It's a model for our system, where works as an money account.
     '''
-    def __init__(self, id):
+    def __init__(self, id, balance = 0):
         self.id = id
-        self._amount = 0
+        self._balance = balance
 
     @property
-    def amount(self):
-        return self._amount
+    def balance(self):
+        return self._balance
 
-    @amount.setter
-    def amount(self, new_amount):
-        self._amount = new_amount
+    @balance.setter
+    def balance(self, new_balance):
+        self._balance = new_balance
+
+    def to_dict(self):
+        return {"id": str(self.id), "balance": str(self._balance)}
