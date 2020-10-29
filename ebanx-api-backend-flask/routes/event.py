@@ -1,5 +1,14 @@
-from . import routes
+from flask import request, make_response, Response
 
-@routes.route('/event')
+from . import routes
+from ..utils import DB
+from ..utils.exceptions import NonExistingAccountException
+
+@routes.route('/event', methods=['POST'])
 def event():
-    return 'Event'
+    try:
+        response_json = DB.event(**request.form)
+        return response_json, 201
+
+    except NonExistingAccountException:
+        return '0', 404
