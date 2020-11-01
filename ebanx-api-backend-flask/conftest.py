@@ -22,6 +22,9 @@ def db():
 
             return last_id
 
+        def get_account(self, acc_id):
+            return self.database._get_account(str(acc_id))
+
         def reset(self):
             self.database.reset()
 
