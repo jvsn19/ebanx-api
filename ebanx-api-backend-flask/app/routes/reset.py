@@ -1,8 +1,8 @@
 from . import routes
 from flask import request
-from ..utils import DB
+from ..db import CustomDatabase
 
 @routes.route('/reset', methods=['POST'])
 def reset():
-    DB.reset()
+    CustomDatabase.reset()
     return '0', 200

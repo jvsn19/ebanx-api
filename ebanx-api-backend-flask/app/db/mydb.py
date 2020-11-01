@@ -1,6 +1,5 @@
 from ..models import Account
-from .event_types import EventType
-from .exceptions import NonExistingAccountException
+from ..utils.exceptions import NonExistingAccountException
 
 class SingletonDB(type):
     _instance = None
@@ -11,7 +10,7 @@ class SingletonDB(type):
         return _instance
 
 
-class DB(metaclass = SingletonDB):
+class CustomDatabase(metaclass = SingletonDB):
     '''
     This class is a singleton, so it should be the only DB instance across the program.
 
@@ -109,6 +108,8 @@ class DB(metaclass = SingletonDB):
         '''
         Method to return the balance of a given account
         '''
+        if not cls.has_account(account_id):
+            raise NonExistingAccountException(account_id)
         return cls._get_account(account_id).balance
 
     @classmethod
