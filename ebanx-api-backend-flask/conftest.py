@@ -16,14 +16,14 @@ def db():
             self.id = 0
 
         def create_account(self, balance = 1000):
-            last_id = self.id
+            last_id = str(self.id)
             self.id += 1
-            CustomDatabase._create_account(str(last_id), balance)
+            CustomDatabase._create_account(last_id, balance)
 
             return last_id
 
         def get_account(self, acc_id):
-            return self.database._get_account(str(acc_id))
+            return self.database._get_account(acc_id)
 
         def reset(self):
             self.database.reset()
