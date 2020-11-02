@@ -7,7 +7,7 @@ class SingletonDB(type):
     def __call__(cls):
         if cls._instance is None:
             cls._instance = super().__call__()
-        return _instance
+        return cls._instance
 
 
 class CustomDatabase(metaclass = SingletonDB):

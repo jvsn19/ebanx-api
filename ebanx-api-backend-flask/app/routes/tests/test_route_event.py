@@ -1,5 +1,3 @@
-from flask import json
-
 DEPOSIT = 'deposit'
 WITHDRAW = 'withdraw'
 TRANSFER = 'transfer'

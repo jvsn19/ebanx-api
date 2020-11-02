@@ -1,4 +1,4 @@
-from flask import request, jsonify, Response
+from flask import request
 
 from . import routes
 from ..utils.exceptions import NonExistingAccountException
