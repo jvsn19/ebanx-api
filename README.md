@@ -1,71 +1,28 @@
 # ebanx-api
-A simple API where I can request and response following the script below:
 
---
-## Reset state before starting tests
+A simple API for learning purpose. This API works like a bank account, where the user can create accounts and do transactions like deposit, withdraw and transference. The methods are listed below:
 
-POST /reset
+- GET
+    - `/balance?account_id=<account_id: id>`
+- POST
+    - `/event {"type":<"deposit" | "withdraw" | "transfer">, "destination":<account_id: id>, "amount":<value: int>}`
+    - `/event {"type":<"withdraw" | "withdraw" | "transfer">, "origin":<account_id: id>, "amount":<value: int>}`
+    - `/event {"type":<"transfer" | "withdraw" | "transfer">, "origin": <account_id: id>, "destination":<account_id: id>`
 
-200 OK
+The API will be in the following [automated test suit website](https://ipkiss.pragmazero.com/)
 
+## API with Flask
+- [x] Application with Flask
+- [x] Custom Database
+- [x] Tests
 
---
-## Get balance for non-existing account
+## [Optional] API with pure Python
+- [ ] Application with Flask
+- [ ] Custom Database
+- [ ] Tests
 
-GET /balance?account_id=1234
-
-404 0
-
-
---
-## Create account with initial balance
-
-POST /event {"type":"deposit", "destination":"100", "amount":10}
-
-201 {"destination": {"id":"100", "balance":10}}
-
-
---
-## Deposit into existing account
-
-POST /event {"type":"deposit", "destination":"100", "amount":10}
-
-201 {"destination": {"id":"100", "balance":20}}
-
-
---
-## Get balance for existing account
-
-GET /balance?account_id=100
-
-200 20
-
---
-## Withdraw from non-existing account
-
-POST /event {"type":"withdraw", "origin":"200", "amount":10}
-
-404 0
-
---
-## Withdraw from existing account
-
-POST /event {"type":"withdraw", "origin":"100", "amount":5}
-
-201 {"origin": {"id":"100", "balance":15}}
-
---
-## Transfer from existing account
-
-POST /event {"type":"transfer", "origin":"100", "amount":15, "destination":"300"}
-
-201 {"origin": {"id":"100", "balance":0}, "destination": {"id":"300", "balance":15}}
-
---
-## Transfer from non-existing account
-
-POST /event {"type":"transfer", "origin":"200", "amount":15, "destination":"300"}
-
-404 0
-
-
+## [Optional] Extras
+- [ ] Use a real database
+    - [ ] Postgres
+    - [ ] Redis
+- [ ] Use Docker
