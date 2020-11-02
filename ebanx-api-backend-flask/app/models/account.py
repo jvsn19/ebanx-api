@@ -15,4 +15,4 @@ class Account:
         self._balance = new_balance
 
     def to_dict(self):
-        return {"id": str(self.id), "balance": str(self._balance)}
+        return {"id": str(self.id), "balance": self._balance}

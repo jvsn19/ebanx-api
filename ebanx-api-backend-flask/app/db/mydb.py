@@ -87,7 +87,9 @@ class CustomDatabase(metaclass = SingletonDB):
         event_type = kwargs.get('type')
         if event_type == 'deposit':
             changed_destination = cls._deposit(**kwargs)
-            return changed_destination.to_dict()
+            return {
+                'destination': changed_destination.to_dict()
+            }
 
         elif event_type == 'transfer':
             changed_origin = cls._withdraw(**kwargs)
@@ -100,7 +102,9 @@ class CustomDatabase(metaclass = SingletonDB):
 
         elif event_type == 'withdraw':
             changed_origin = cls._withdraw(**kwargs)
-            return changed_origin.to_dict()
+            return {
+                'origin': changed_origin.to_dict()
+            }
 
 
     @classmethod

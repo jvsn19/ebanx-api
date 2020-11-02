@@ -5,4 +5,4 @@ from ..db import CustomDatabase
 @routes.route('/reset', methods=['POST'])
 def reset():
     CustomDatabase.reset()
-    return '0', 200
+    return 'OK', 200
